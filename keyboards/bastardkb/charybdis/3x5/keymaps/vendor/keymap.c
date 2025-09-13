@@ -99,17 +99,16 @@ static uint16_t auto_pointer_layer_timer = 0;
 /**
  * \brief Coding layer.
  *
- * This layer remaps keys for coding-specific functions. The right-hand side
- * mirrors the numeral layer's function keys, with additional keys on the
- * pinkie column and system commands on the inner column. The "App" key is
- * assigned to a thumb key, and other thumb keys are duplicated from the base
- * layer to allow for easy auto-repeat functionality.
+ * This layer provides coding-related functionalities, with function keys
+ * mirroring the numeral layer's layout. It includes extra keys on the
+ * pinkie column and system keys on the inner column. Thumb keys are
+ * duplicated from the base layer for convenient access and auto-repeat.
  */
 #define LAYOUT_LAYER_CODING                                                                 \
-    XXXXXXX, XXXXXXX, XXXXXXX, S(KC_4), XXXXXXX, S(KC_6), S(KC_9), S(KC_0), KC_MINS, XXXXXXX \
-    KC_LSFT, S(KC_2), S(KC_3), S(KC_5), XXXXXXX, S(KC_7), S(KC_LBRC), S(KC_RBRC), KC_EQL, KC_SCLN \
-    KC_GRV, XXXXXXX, XXXXXXX, S(KC_SCLN), XXXXXXX, S(KC_8), KC_LBRC, KC_RBRC, S(KC_1), KC_BSLS \
-                      KC_LGUI, _______, KC_LALT, KC_ENT, KC_LCTL
+    XXXXXXX, XXXXXXX, KC_F7, KC_F8, KC_F9, XXXXXXX, KC_7, KC_8, KC_9, XXXXXXX \
+    KC_LSFT, KC_LALT, KC_F4, KC_F5, KC_F6, XXXXXXX, KC_4, KC_5, KC_6, KC_0 \
+    KC_LGUI, KC_LCTL, KC_F1, KC_F2, KC_F3, XXXXXXX, KC_1, KC_2, KC_3, XXXXXXX \
+                      XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
 
 /**
  * \brief Media layer.
