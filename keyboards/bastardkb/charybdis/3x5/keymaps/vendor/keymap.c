@@ -22,11 +22,11 @@
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
-    LAYER_NUMERAL
-    LAYER_CODING,
+    LAYER_FUNCTION,
+    LAYER_NAVIGATION,
     LAYER_MEDIA,
     LAYER_POINTER,
-    LAYER_NAVIGATION,
+    LAYER_NUMERAL,
     LAYER_SYMBOLS,
 };
 
@@ -46,10 +46,10 @@ static uint16_t auto_pointer_layer_timer = 0;
 #endif     // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 
 #define ESC_MED LT(LAYER_MEDIA, KC_ESC)
-#define SPC_COD LT(LAYER_CODING, KC_SPC)
-#define TAB_NUM LT(LAYER_NUMERAL, KC_TAB)
+#define SPC_NAV LT(LAYER_NAVIGATION, KC_SPC)
+#define TAB_FUN LT(LAYER_FUNCTION, KC_TAB)
 #define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
-#define BSP_NAV LT(LAYER_NAVIGATION, KC_BSPC)
+#define BSP_NUM LT(LAYER_NUMERAL, KC_BSPC)
 #define _L_PTR(KC) LT(LAYER_POINTER, KC)
 
 #ifndef POINTING_DEVICE_ENABLE
@@ -65,7 +65,7 @@ static uint16_t auto_pointer_layer_timer = 0;
        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, \
        KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, \
        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, \
-                      ESC_MED, SPC_COD, TAB_NUM, ENT_SYM, BSP_NAV
+                      ESC_MED, SPC_NAV, TAB_FUN, ENT_SYM, BSP_NUM
 
 /** Convenience row shorthands. */
 #define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
@@ -83,33 +83,18 @@ static uint16_t auto_pointer_layer_timer = 0;
  */
 
 /**
- * \brief Coding layer.
+ * \brief Function layer.
  *
- * This layer provides coding-related functionalities, with function keys
- * mirroring the numeral layer's layout. It includes extra keys on the
- * pinkie column and system keys on the inner column. Thumb keys are
- * duplicated from the base layer for convenient access and auto-repeat.
+ * Secondary right-hand layer has function keys mirroring the numerals on the
+ * primary layer with extras on the pinkie column, plus system keys on the inner
+ * column. App is on the tertiary thumb key and other thumb keys are duplicated
+ * from the base layer to enable auto-repeat.
  */
-#define LAYOUT_LAYER_NUMERAL                                                                 \
-    XXXXXXX, XXXXXXX, KC_F7, KC_F8, KC_F9, XXXXXXX, KC_7, KC_8, KC_9, XXXXXXX \
-    KC_LSFT, KC_LALT, KC_F4, KC_F5, KC_F6, XXXXXXX, KC_4, KC_5, KC_6, KC_0 \
-    KC_LGUI, KC_LCTL, KC_F1, KC_F2, KC_F3, XXXXXXX, KC_1, KC_2, KC_3, XXXXXXX \
+#define LAYOUT_LAYER_FUNCTION                                                                 \
+    _______________DEAD_HALF_ROW_______________, KC_PSCR,   KC_F7,   KC_F8,   KC_F9,  KC_F12, \
+    ______________HOME_ROW_GACS_L______________, KC_SCRL,   KC_F4,   KC_F5,   KC_F6,  KC_F11, \
+    _______________DEAD_HALF_ROW_______________, KC_PAUS,   KC_F1,   KC_F2,   KC_F3,  KC_F10, \
                       XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
-
-/**
- * \brief Coding layer.
- *
- * This layer remaps keys for coding-specific functions. The right-hand side
- * mirrors the numeral layer's function keys, with additional keys on the
- * pinkie column and system commands on the inner column. The "App" key is
- * assigned to a thumb key, and other thumb keys are duplicated from the base
- * layer to allow for easy auto-repeat functionality.
- */
-#define LAYOUT_LAYER_CODING                                                                 \
-    XXXXXXX, XXXXXXX, XXXXXXX, S(KC_4), XXXXXXX, S(KC_6), S(KC_9), S(KC_0), KC_MINS, XXXXXXX \
-    KC_LSFT, S(KC_2), S(KC_3), S(KC_5), XXXXXXX, S(KC_7), S(KC_LBRC), S(KC_RBRC), KC_EQL, KC_SCLN \
-    KC_GRV, XXXXXXX, XXXXXXX, S(KC_SCLN), XXXXXXX, S(KC_8), KC_LBRC, KC_RBRC, S(KC_1), KC_BSLS \
-                      KC_LGUI, _______, KC_LALT, KC_ENT, KC_LCTL
 
 /**
  * \brief Media layer.
@@ -143,6 +128,19 @@ static uint16_t auto_pointer_layer_timer = 0;
     ______________HOME_ROW_GACS_L______________, KC_CAPS, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, \
     _______________DEAD_HALF_ROW_______________,  KC_INS, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, \
                       XXXXXXX, _______, XXXXXXX,  KC_ENT, KC_BSPC
+
+/**
+ * \brief Numeral layout.
+ *
+ * Primary left-hand layer (right home thumb) is numerals and symbols. Numerals
+ * are in the standard numpad locations with symbols in the remaining positions.
+ * `KC_DOT` is duplicated from the base layer.
+ */
+#define LAYOUT_LAYER_NUMERAL                                                                  \
+    KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC, _______________DEAD_HALF_ROW_______________, \
+    KC_SCLN,    KC_4,    KC_5,    KC_6,  KC_EQL, ______________HOME_ROW_GACS_R______________, \
+     KC_GRV,    KC_1,    KC_2,    KC_3, KC_BSLS, _______________DEAD_HALF_ROW_______________, \
+                       KC_DOT,    KC_0, KC_MINS, XXXXXXX, _______
 
 /**
  * \brief Symbols layer.
@@ -208,7 +206,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT_wrapper(
     POINTER_MOD(HOME_ROW_MOD_GACS(LAYOUT_LAYER_BASE))
   ),
-  [LAYER_CODING] = LAYOUT_wrapper(LAYOUT_LAYER_CODING),
+  [LAYER_FUNCTION] = LAYOUT_wrapper(LAYOUT_LAYER_FUNCTION),
   [LAYER_NAVIGATION] = LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
   [LAYER_MEDIA] = LAYOUT_wrapper(LAYOUT_LAYER_MEDIA),
   [LAYER_NUMERAL] = LAYOUT_wrapper(LAYOUT_LAYER_NUMERAL),
