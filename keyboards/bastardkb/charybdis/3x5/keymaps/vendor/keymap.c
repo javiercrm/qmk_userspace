@@ -82,7 +82,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  * See https://github.com/manna-harbour/miryoku for the original layout.
  */
 
- /**
+/**
  * \brief Coding layer.
  *
  * This layer remaps keys for coding-specific functions. The right-hand side
@@ -98,18 +98,16 @@ static uint16_t auto_pointer_layer_timer = 0;
                       KC_LGUI, _______, KC_LALT,  KC_ENT, KC_LCTL
 
 /**
- * \brief Coding layer.
+ * \brief Numeral layer.
  *
- * This layer provides coding-related functionalities, with function keys
- * mirroring the numeral layer's layout. It includes extra keys on the
- * pinkie column and system keys on the inner column. Thumb keys are
- * duplicated from the base layer for convenient access and auto-repeat.
+ * This layer provides numeric keypad–style input on the right hand,
+ * with function keys mirrored on the left hand.
  */
 #define LAYOUT_LAYER_NUMERAL                                                                 \
-    XXXXXXX, XXXXXXX, KC_F7, KC_F8, KC_F9, XXXXXXX, KC_7, KC_8, KC_9, XXXXXXX \
-    KC_LSFT, KC_LALT, KC_F4, KC_F5, KC_F6, XXXXXXX, KC_4, KC_5, KC_6, KC_0 \
-    KC_LGUI, KC_LCTL, KC_F1, KC_F2, KC_F3, XXXXXXX, KC_1, KC_2, KC_3, XXXXXXX \
-                      XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
+    XXXXXXX, XXXXXXX, KC_F7, KC_F8, KC_F9, XXXXXXX, KC_7, KC_8, KC_9, XXXXXXX, \
+    KC_LSFT, KC_LALT, KC_F4, KC_F5, KC_F6, XXXXXXX, KC_4, KC_5, KC_6, KC_0,    \
+    KC_LGUI, KC_LCTL, KC_F1, KC_F2, KC_F3, XXXXXXX, KC_1, KC_2, KC_3, XXXXXXX, \
+                          XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
 
 /**
  * \brief Media layer.
@@ -159,13 +157,6 @@ static uint16_t auto_pointer_layer_timer = 0;
 
 /**
  * \brief Add Home Row mod to a layout.
- *
- * Expects a 10-key per row layout.  Adds support for GACS (Gui, Alt, Ctl, Shift)
- * home row.  The layout passed in parameter must contain at least 20 keycodes.
- *
- * This is meant to be used with `LAYER_ALPHAS_QWERTY` defined above, eg.:
- *
- *     HOME_ROW_MOD_GACS(LAYER_ALPHAS_QWERTY)
  */
 #define _HOME_ROW_MOD_GACS(                                            \
     L00, L01, L02, L03, L04, R05, R06, R07, R08, R09,                  \
@@ -180,13 +171,6 @@ static uint16_t auto_pointer_layer_timer = 0;
 
 /**
  * \brief Add pointer layer keys to a layout.
- *
- * Expects a 10-key per row layout.  The layout passed in parameter must contain
- * at least 30 keycodes.
- *
- * This is meant to be used with `LAYER_ALPHAS_QWERTY` defined above, eg.:
- *
- *     POINTER_MOD(LAYER_ALPHAS_QWERTY)
  */
 #define _POINTER_MOD(                                                  \
     L00, L01, L02, L03, L04, R05, R06, R07, R08, R09,                  \
